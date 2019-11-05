@@ -47,7 +47,7 @@ class Carousel extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // You don't have to do this check first, but it can help prevent an unneeded render
+        // Prevent an unneeded render
         if (nextProps.config) {
             this.changeWidth(nextProps);
         }
