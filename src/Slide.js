@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Slide = ({ image, slideWidth, altText }) => {
+export const Slide = ({ image, imagePreview, slideWidth, altText }) => {
     const styles = {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -11,7 +11,8 @@ export const Slide = ({ image, slideWidth, altText }) => {
         height: "auto"
     };
     return <img className="slide lazy" style={styles} data-srcset={image} alt={`Slide ${altText}`}
-            data-src={image} src="https://images.iphonephotographyschool.com/7944/1120b/Blurry-iPhone-Photo-1.jpg" />
+            data-src={image} src={imagePreview} />
+            
    
         ;
 };

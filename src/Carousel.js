@@ -10,7 +10,6 @@ class Carousel extends React.Component {
         super(props);
 
         this.state = {
-            carouselData: this.props.carouselData,
             currentIndex: props.config.slidesToShow - 1,
             translateValue: 0,
             slideWidth: "100%",
@@ -89,7 +88,8 @@ class Carousel extends React.Component {
     };
 
     goToNextSlide = () => {
-        let { currentIndex, currentSettings, carouselData } = this.state;
+        let { currentIndex, currentSettings } = this.state;
+        let { carouselData } = this.props;
         
         if (currentIndex === carouselData.length - 1) {
             return this.setState({
@@ -140,7 +140,9 @@ class Carousel extends React.Component {
     };
 
     calculateNextIndexAndTranslateValue() {
-        let { currentIndex, currentSettings, carouselData } = this.state;
+        let { currentIndex, currentSettings } = this.state;
+        let { carouselData } = this.props;
+
         let extraSlides = carouselData.length - 1 - currentIndex;
         let jumpMultiplicator, newIndex;
 
@@ -158,13 +160,14 @@ class Carousel extends React.Component {
     }
 
     render() {
+        
         return (
             <div>
                 <LeftArrow goToPrevSlide={this.goToPrevSlide} />
 
                 <RightArrow goToNextSlide={this.goToNextSlide} />
                 <div className="carousel">
-                    <figure
+                    <div
                         className="carousel-wrapper"
                         style={{
                             transform: `translateX(${this.state.translateValue}px)`,
@@ -175,16 +178,26 @@ class Carousel extends React.Component {
                                 }s`
                         }}
                     >
-                        {this.state.carouselData.map((image, i) => (
-                            <Slide
+                        {this.props.carouselData.map((image, i) => {
+                            return (
+                                
+                                    <Slide
                                 key={i}
-                                image={image}
+                                image={image.largeImageURL}
+                                imagePreview={image.previewURL}
                                 slideWidth={this.state.slideWidth}
                                 altText={i}
                             />
-                        ))}
-                    </figure>
+                            
+                            
+                        )})}
+                    </div>
                 </div>
+                <div className="buttonContainer">
+                <button className="btn btn-primary desktopButton" onClick={this.goToPrevSlide}>Prev</button>
+                <button className="btn btn-primary desktopButton" onClick={this.goToNextSlide}>Next</button>
+                </div>
+                
             </div>
         );
     }
@@ -193,6 +206,7 @@ class Carousel extends React.Component {
 export default Carousel;
 
 Carousel.propTypes = {
+    carouselData: PropTypes.array,
     config: PropTypes.shape({
         slidesToShow: PropTypes.number.isRequired,
         slidesToScroll: PropTypes.number.isRequired,
