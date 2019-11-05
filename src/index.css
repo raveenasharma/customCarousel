@@ -11,3 +11,90 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.carousel {
+  position: relative;
+  width: auto;
+  margin: 20px 100px 20px 80px;
+  height: 50vh;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.carousel-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slide {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+}
+
+.arrow {
+  width: 4%;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightgrey;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+}
+
+.arrow:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.nextArrow {
+  position: absolute;
+  top: 25%;
+  right: 25px;
+  z-index: 999;
+  color: #fff;
+}
+
+.backArrow {
+  position: absolute;
+  top: 25%;
+  left: 25px;
+  z-index: 999;
+  color: #fff;
+}
+
+
+.configContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.configItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.configButton {
+  margin: 10px 0 20px 0;
+}
+
+.centerTile {
+  transform: scale(1.1);
+  box-shadow: 12px 12px 20px grey;
+  margin: 80px;
+}
+
+@keyframes mymove {
+  from {
+    left: -10px;
+  }
+  to {
+    left: 30px;
+  }
+}
